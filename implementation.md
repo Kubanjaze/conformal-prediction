@@ -26,6 +26,22 @@ Outputs: conformal_results.csv, coverage_plot.png
 | 90% | 0.977 ± 0.044 | ±0.847 (total 1.694) |
 | 95% | 0.993 ± 0.025 | ±0.931 (total 1.862) |
 
+## Key Concepts
+- Split conformal prediction — distribution-free prediction intervals with coverage guarantees
+- Nonconformity scores: |y_true - y_pred| on calibration set
+- Quantile-based interval width from calibration residuals
+- Monte Carlo evaluation (100 random train/calibration splits) for empirical coverage estimation
+
+## Verification Checklist
+- [x] Empirical coverage exceeds target at all 3 levels (80%, 90%, 95%)
+- [x] Interval width increases with target coverage (0.57 to 0.93 pIC50)
+- [x] conformal_results.csv and coverage_plot.png saved to output/
+- [x] 100 Monte Carlo splits completed for robust coverage estimation
+
+## Risks
+- Small calibration set (n=14 at 30% split) produces conservative (over-wide) intervals
+- Split conformal assumes exchangeability; scaffold structure may violate this
+
 ## Key Insights
 - Empirical coverage consistently exceeds target — expected for small calibration sets (n=14)
 - Coverage guarantee is a lower bound; over-coverage is the conservative direction
